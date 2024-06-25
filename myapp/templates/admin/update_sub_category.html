@@ -1,0 +1,20 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Category</h1>
+<section id="data-section">
+  <form
+    action="{% url 'categories.insert' %}"
+    method="post"
+    name="category"
+    onsubmit="return categoryForm()"
+  >
+    <input type="text" name="name" placeholder="Category name" />
+    <select name="companyID" id="" style="text-transform: capitalize">
+      {% for c in company %}
+      <option value="{{c.companyID}}" style="text-transform: capitalize">{{c.companyName}}</option>
+      {% endfor %}
+    </select>
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

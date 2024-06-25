@@ -1,0 +1,41 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<div class="header-heading">
+  <h1>Distributors</h1>
+  <a href="{% url 'distributors.insert' %}" class="btn">New Record</a>
+</div>
+<section id="data-section">
+  <table>
+    <thead class="thead">
+      <tr>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th style="width: 200px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in data %}
+      <tr>
+        <td>{{d.DName}}</td>
+        <td>{{d.contactNo}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.CompanyName}}</td>
+        <td style="display: flex; justify-content: center; width: 200px">
+          <a
+            href="{% url 'distributors.update' id=d.DID %}"
+            style="margin-right: 10px"
+            class="btn edit"
+            >Update</a
+          >
+          <form method="post" action="{% url 'distributors.delete' id=d.DID %}">
+            <button type="submit" class="btn delete">Delete</button>
+            {% csrf_token %}
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock 'content' %}

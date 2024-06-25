@@ -1,0 +1,24 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Update Distributor</h1>
+<section id="data-section">
+  <form action="" method="post" name="distributor"
+    onsubmit="return distributorForm()">
+    <input type="text" name="name" value="{{distributor.DName}}" placeholder="Distributor name" />
+    <input type="text" name="contact" value="{{distributor.contactNo}}" placeholder="Contact No" />
+    <input type="text" name="email" value="{{distributor.email}}" placeholder="Email" />
+    <select name="companyID" style="text-transform: capitalize">
+      {% for com in company %}
+      <option value="{{com.companyID}}" 
+      {% if com.companyID == distributor.companyID_id %}
+        selected
+      {% endif %}
+         style="text-transform: capitalize">
+        {{com.companyName}}
+      </option>
+      {% endfor %}
+    </select>
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Update Record</h1>
+<section id="data-section">
+  <form action="" method="post" name="company" onsubmit="return companyForm()">
+    <select name="PCoID" id="" style="text-transform: capitalize">
+      {% for c in company %}
+      <option value="{{c.PCID}}" 
+      {% if c.PCID == purchase.PCoID_id %}
+        selected
+      {% endif %}
+         style="text-transform: capitalize">{{c.PCName}}</option>
+      {% endfor %}
+    </select>
+    <select name="DID" id="" style="text-transform: capitalize">
+      {% for dis in distributor %}
+      <option value="{{dis.DID}}" 
+      {% if dis.DID == purchase.DID_id %}
+        selected
+      {% endif %}
+         style="text-transform: capitalize">{{dis.DName}}</option>
+      {% endfor %}
+    </select>
+    <input type="text" name="qty" value="{{purchase.qty}}" id="" placeholder="Quantities" />
+    <input type="text" name="totalBill" value="{{purchase.totalBill}}" placeholder="Total Bill" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

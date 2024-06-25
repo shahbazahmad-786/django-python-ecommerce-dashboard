@@ -1,0 +1,26 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Record</h1>
+<section id="data-section">
+  <form
+    action="{% url 'purchase.insert' %}"
+    method="post"
+    name="company"
+    onsubmit="return companyForm()"
+  >
+    <select name="PCoID" id="" style="text-transform: capitalize">
+      {% for c in company %}
+      <option value="{{c.PCID}}" style="text-transform: capitalize">{{c.PCName}}</option>
+      {% endfor %}
+    </select>
+    <select name="DID" id="" style="text-transform: capitalize">
+      {% for dis in distributor %}
+      <option value="{{dis.DID}}" style="text-transform: capitalize">{{dis.DName}}</option>
+      {% endfor %}
+    </select>
+    <input type="text" name="qty" id="" placeholder="Quantities" />
+    <input type="text" name="totalBill" id="" placeholder="Total Bill" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

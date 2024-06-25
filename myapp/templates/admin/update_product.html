@@ -1,0 +1,36 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Update Product</h1>
+<section id="data-section">
+  <form action="" method="post" name="product"
+    onsubmit="return productForm()">
+    <input type="text" name="name" value="{{product.PName}}" placeholder="Product name" />
+
+    <select name="categoryID" style="text-transform: capitalize">
+      {% for c in category %}
+      <option value="{{c.CatID}}" 
+      {% if c.CatID == product.CatID_id %}
+        selected
+      {% endif %}
+         style="text-transform: capitalize">
+         {{c.CatName}}
+      </option>
+      {% endfor %}
+    </select>
+    <select name="PCID" style="text-transform: capitalize">
+      {% for com in productCompany %}
+      <option value="{{com.PCID}}" 
+      {% if com.PCID == product.PCoID_id %}
+        selected
+      {% endif %}
+         style="text-transform: capitalize">
+        {{com.PCName}}
+      </option>
+      {% endfor %}
+    </select>
+
+    <input type="text" name="details" value="{{product.details}}" id="" placeholder="Details" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

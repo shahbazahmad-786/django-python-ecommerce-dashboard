@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Update Company</h1>
+<section id="data-section">
+  <form action="" method="post" name="company" onsubmit="return companyForm()">
+    <input type="text" name="name" value="{{company.companyName}}" placeholder="Company name" />
+    <input type="text" name="contact" value="{{company.contactNo}}" placeholder="Contact No" />
+    <input type="text" name="address" value="{{company.address}}" placeholder="Address" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

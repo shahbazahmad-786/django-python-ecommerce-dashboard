@@ -1,0 +1,20 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Sub Category</h1>
+<section id="data-section">
+  <form
+    action="{% url 'sub-categories.insert' %}"
+    method="post"
+    name="category"
+    onsubmit="return categoryForm()"
+  >
+    <input type="text" name="name" placeholder="Sub Category name" />
+    <select name="CatID" id="" style="text-transform: capitalize">
+      {% for c in category %}
+      <option value="{{c.CatID}}" style="text-transform: capitalize">{{c.CatName}}</option>
+      {% endfor %}
+    </select>
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

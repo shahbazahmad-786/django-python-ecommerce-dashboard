@@ -1,0 +1,25 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Distributor</h1>
+<section id="data-section">
+  <form
+    action="{% url 'distributors.insert' %}"
+    method="post"
+    name="distributor"
+    onsubmit="return distributorForm()"
+  >
+    <input type="text" name="name" id="" placeholder="Distributor name" />
+    <input type="text" name="contact" id="" placeholder="Contact No" />
+    <input type="email" name="email" id="" placeholder="Email" />
+    <select name="companyID" style="text-transform: capitalize">
+      <option>Select Company</option>
+      {% for com in company %}
+      <option value="{{com.companyID}}" style="text-transform: capitalize">
+        {{com.companyName}}
+      </option>
+      {% endfor %}
+    </select>
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

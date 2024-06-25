@@ -1,0 +1,30 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Product</h1>
+<section id="data-section">
+  <form
+    action="{% url 'products.insert' %}"
+    method="post"
+    name="product"
+    onsubmit="return productForm()"
+    enctype="multipart/form-data"
+  >
+    <input type="text" name="name" placeholder="Product name" />
+    <input type="file" name="image" />
+    <select name="categoryID" style="text-transform: capitalize">
+      {% for c in category %}
+      <option value="{{c.CatID}}" style="text-transform: capitalize">{{c.CatName}}</option>
+      {% endfor %}
+    </select>
+    <select name="PCID" style="text-transform: capitalize">
+      {% for com in productCompany %}
+      <option value="{{com.PCID}}" style="text-transform: capitalize">{{com.PCName}}</option>
+      {% endfor %}
+    </select>
+    <input type="text" name="price" id="" placeholder="Price" />
+    Stock : <input type="checkbox" style="width: 20px" name="stock" id="" />
+    <input type="text" name="details" id="" placeholder="Details" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}

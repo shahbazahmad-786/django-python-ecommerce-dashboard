@@ -1,0 +1,17 @@
+{% extends 'admin/base.html' %} {% block 'content' %}
+<h1>Add New Company</h1>
+<section id="data-section">
+  <form
+    action="{% url 'companies.insert' %}"
+    method="post"
+    name="company"
+    onsubmit="return companyForm()"
+  >
+    <input type="text" name="name" id="" placeholder="Company name" />
+    <input type="text" name="contact" id="" placeholder="Contact No" />
+    <input type="text" name="address" id="" placeholder="Address" />
+    {% csrf_token %}
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</section>
+{% endblock 'content' %}
